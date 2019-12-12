@@ -43,9 +43,9 @@ int main(int argc, char *argv[]) {
 			case 5:
 				printEmOrdemDecrescente(r);
 				break;
-            case 6:
-                printPreOrdem(r);
-                break;
+            		case 6:
+                		printPreOrdem(r);
+                		break;
 			case 0:
 				quit = 1;
 				break;
