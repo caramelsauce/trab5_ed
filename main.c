@@ -65,7 +65,7 @@ void menu()
 	printf("3 - Excluir Contato\n");
 	printf("4 - Exibir Dados em Ordem Crescente\n");
 	printf("5 - Exibir Dados em Ordem Decrescente\n");
-    printf("6 - Exibir Dados em Pre-Ordem\n");
+        printf("6 - Exibir Dados em Pre-Ordem\n");
 	printf("0 - Sair\n");
 	printf("Opção: ");
 }
