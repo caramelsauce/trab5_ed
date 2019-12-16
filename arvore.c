@@ -26,7 +26,10 @@ void insere(struct Node **r, struct Node *novo)
 	}
 	else
 		(*r) = novo;
-    (*r)->h = 1 + max(altura((*r)->esq), altura((*r)->dir));
+    (*r)->h = 1 + max(altura((*r)->esq), altura((*r)->dir)); //atualizar a altura
+	
+    //testar se arvore está desbalanceada e chamar a rotação certa
+    
     if(FB(*r) > 1){
         if(FB((*r)->dir) > 0)
             *r = RE(*r);
@@ -47,7 +50,7 @@ void insereNode(struct Node **r, struct Contato temp)
 	novo->contato = temp;
 	novo->esq = NULL;
 	novo->dir = NULL;
-    novo->h = 1;
+    novo->h = 1; //um único nó tem altura 1
 	insere(r, novo);
 }
 
@@ -131,11 +134,13 @@ void printPreOrdem(struct Node *r)
 	}
 }
 
+//retorna o maior entre 2 números
 int max(int a, int b)
 {
     return (a > b)? a : b;
 }
 
+//retorna a altura do nó ou 0 se o ponteiro for NULL
 int altura(struct Node *r)
 {
     if(!r)
@@ -143,6 +148,7 @@ int altura(struct Node *r)
     return r->h;
 }
 
+//retorna o fator de balanceamento(diferença das alturas da subárvore direita e esquerda) ou 0 se o ponteiro for NULL
 int FB(struct Node *y)
 {
     if(!y)
@@ -150,6 +156,7 @@ int FB(struct Node *y)
     return (altura(y->dir) - altura(y->esq));
 }
 
+//rotação esquerda
 struct Node *RE(struct Node *y)
 {
     struct Node *x = y->dir;
@@ -161,6 +168,7 @@ struct Node *RE(struct Node *y)
     return x;
 }
 
+//rotação direita
 struct Node *RD(struct Node *y)
 {
     struct Node *x = y->esq;
@@ -172,12 +180,14 @@ struct Node *RD(struct Node *y)
     return x;
 }
 
+//rotação esquerda direita
 struct Node *RED(struct Node *y)
 {
     y->esq = RE(y->esq);
     return RD(y);
 }
 
+//rotação direita esquerda
 struct Node *RDE(struct Node *y)
 {
     y->dir = RD(y->dir);
